@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGPT Outline Navigator 设置</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="settings-card" aria-labelledby="pageTitle">
+        <header class="card-header">
+          <div>
+            <h1 id="pageTitle">ChatGPT Outline Navigator</h1>
+            <p>调整大纲条数、显示范围、位置、展开状态和刻度轨道。</p>
+          </div>
+          <button id="resetBtn" class="btn btn-secondary" type="button">恢复默认</button>
+        </header>
+
+        <form id="settingsForm" class="form-grid">
+          <label class="field" for="maxOutlineItems">
+            <span class="label">大纲条数</span>
+            <input id="maxOutlineItems" type="number" min="5" max="20" step="1" />
+            <small>默认 10，最多显示 20 条。</small>
+          </label>
+
+          <label class="field field-checkbox" for="onlyUserMessages">
+            <span>
+              <span class="label">仅显示用户消息</span>
+              <small>开启后，只把用户提问作为大纲锚点。</small>
+            </span>
+            <input id="onlyUserMessages" type="checkbox" />
+          </label>
+
+          <label class="field" for="panelRight">
+            <span class="label">右侧偏移</span>
+            <input id="panelRight" type="number" min="0" max="48" step="1" />
+            <small>控制组件距离右边缘的像素值。</small>
+          </label>
+
+          <label class="field" for="expandedWidth">
+            <span class="label">面板宽度</span>
+            <input id="expandedWidth" type="number" min="200" max="360" step="10" />
+            <small>展开后的大纲面板宽度。</small>
+          </label>
+
+          <label class="field" for="tickMapHeight">
+            <span class="label">刻度地图高度</span>
+            <input id="tickMapHeight" type="number" min="220" max="500" step="10" />
+            <small>右侧刻度区总高度。</small>
+          </label>
+
+          <label class="field field-checkbox" for="autoHideOnSmallScreen">
+            <span>
+              <span class="label">小屏自动隐藏</span>
+              <small>窗口过窄时隐藏，避免遮挡内容。</small>
+            </span>
+            <input id="autoHideOnSmallScreen" type="checkbox" />
+          </label>
+
+          <label class="field field-checkbox" for="defaultPinned">
+            <span>
+              <span class="label">默认固定展开</span>
+              <small>进入 ChatGPT 页面后自动展开大纲面板。</small>
+            </span>
+            <input id="defaultPinned" type="checkbox" />
+          </label>
+
+          <label class="field field-checkbox" for="showRailLine">
+            <span>
+              <span class="label">显示刻度轨道线</span>
+              <small>关闭后只保留可点击的刻度标记。</small>
+            </span>
+            <input id="showRailLine" type="checkbox" />
+          </label>
+        </form>
+
+        <footer class="card-footer">
+          <span id="statusText" class="status" role="status">尚未保存</span>
+          <div class="actions">
+            <button id="saveBtn" class="btn btn-primary" type="button">保存设置</button>
+          </div>
+        </footer>
+      </section>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>

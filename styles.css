@@ -1,0 +1,260 @@
+#tm-chatgpt-outline-root {
+  --outline-panel-right: 10px;
+  --outline-expanded-width: 240px;
+  --outline-collapsed-width: 18px;
+  --outline-tick-height: 320px;
+  --outline-panel-max-height: 68vh;
+  --outline-primary: #4c6fff;
+  --outline-text: #6f6f6f;
+  --outline-muted: #9a9a9a;
+  --outline-border: rgba(15, 23, 42, 0.08);
+  --outline-surface: rgba(250, 250, 250, 0.94);
+  position: fixed;
+  top: 50%;
+  right: var(--outline-panel-right);
+  transform: translateY(-50%);
+  z-index: 2147483000;
+  display: flex;
+  align-items: center;
+  pointer-events: auto;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+#tm-chatgpt-outline-root.hidden-by-screen {
+  display: none !important;
+}
+
+#tm-chatgpt-outline-root .tm-outline-shell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+#tm-chatgpt-outline-root .tm-outline-panel {
+  width: 0;
+  opacity: 0;
+  transform: translateX(8px);
+  transform-origin: right center;
+  overflow: hidden;
+  transition: width 0.18s ease, opacity 0.16s ease, transform 0.18s ease, margin-right 0.18s ease;
+  margin-right: 0;
+  pointer-events: none;
+}
+
+#tm-chatgpt-outline-root.expanded .tm-outline-panel {
+  width: var(--outline-expanded-width);
+  opacity: 1;
+  transform: translateX(0);
+  margin-right: 8px;
+  pointer-events: auto;
+}
+
+#tm-chatgpt-outline-root .tm-outline-panel-inner {
+  max-height: var(--outline-panel-max-height);
+  background: var(--outline-surface);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#tm-chatgpt-outline-root .tm-outline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 10px 6px 12px;
+}
+
+#tm-chatgpt-outline-root .tm-outline-title {
+  min-width: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--outline-muted);
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#tm-chatgpt-outline-root .tm-outline-header-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+#tm-chatgpt-outline-root .tm-outline-btn {
+  border: none;
+  background: transparent;
+  color: #a6a6a6;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  padding: 5px 6px;
+  border-radius: 8px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+#tm-chatgpt-outline-root .tm-outline-btn:hover,
+#tm-chatgpt-outline-root .tm-outline-btn:focus-visible {
+  background: rgba(0, 0, 0, 0.04);
+  color: #555;
+  outline: none;
+}
+
+#tm-chatgpt-outline-root .tm-outline-btn.pinned {
+  color: var(--outline-primary);
+  background: rgba(76, 111, 255, 0.08);
+}
+
+#tm-chatgpt-outline-root .tm-outline-body {
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 2px 4px 6px 6px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(180, 180, 180, 0.45) transparent;
+}
+
+#tm-chatgpt-outline-root .tm-outline-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+#tm-chatgpt-outline-root .tm-outline-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#tm-chatgpt-outline-root .tm-outline-body::-webkit-scrollbar-thumb {
+  background: rgba(180, 180, 180, 0.45);
+  border-radius: 999px;
+}
+
+#tm-chatgpt-outline-root .tm-outline-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  padding: 7px 22px 7px 10px;
+  cursor: pointer;
+  color: #858585;
+  transition: color 0.14s ease, background 0.14s ease;
+  margin-bottom: 0;
+}
+
+#tm-chatgpt-outline-root .tm-outline-item:hover,
+#tm-chatgpt-outline-root .tm-outline-item:focus-visible {
+  background: rgba(0, 0, 0, 0.03);
+  color: #555;
+  outline: none;
+}
+
+#tm-chatgpt-outline-root .tm-outline-item.active {
+  color: var(--outline-primary);
+  background: transparent;
+  font-weight: 500;
+}
+
+#tm-chatgpt-outline-root .tm-outline-item::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 2px;
+  border-radius: 999px;
+  background: transparent;
+  transition: background 0.14s ease, width 0.14s ease;
+}
+
+#tm-chatgpt-outline-root .tm-outline-item.active::after {
+  width: 12px;
+  background: var(--outline-primary);
+}
+
+#tm-chatgpt-outline-root .tm-outline-item-title {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 1.25;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#tm-chatgpt-outline-root .tm-outline-empty {
+  padding: 12px;
+  font-size: 12px;
+  color: var(--outline-muted);
+  line-height: 1.5;
+}
+
+#tm-chatgpt-outline-root .tm-outline-rail {
+  position: relative;
+  width: var(--outline-collapsed-width);
+  min-width: var(--outline-collapsed-width);
+  height: var(--outline-tick-height);
+  max-height: var(--outline-tick-height);
+  display: block;
+  overflow: visible;
+}
+
+#tm-chatgpt-outline-root .tm-outline-rail::before {
+  content: "";
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  border-radius: 999px;
+  background: rgba(190, 190, 190, 0.28);
+  pointer-events: none;
+}
+
+#tm-chatgpt-outline-root.no-rail-line .tm-outline-rail::before {
+  display: none;
+}
+
+#tm-chatgpt-outline-root .tm-outline-tick {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-10%);
+  width: 8px;
+  height: 2px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: rgba(150, 150, 150, 0.72);
+  appearance: none;
+  transition: width 0.14s ease, height 0.14s ease, background 0.14s ease, transform 0.14s ease;
+  cursor: pointer;
+}
+
+#tm-chatgpt-outline-root .tm-outline-tick:hover,
+#tm-chatgpt-outline-root .tm-outline-tick:focus-visible {
+  width: 12px;
+  background: rgba(100, 100, 100, 0.9);
+  outline: none;
+}
+
+#tm-chatgpt-outline-root .tm-outline-tick.active {
+  width: 12px;
+  height: 3px;
+  background: var(--outline-primary);
+}
+
+.tm-chatgpt-outline-target-highlight {
+  outline: 2px solid rgba(76, 111, 255, 0.6) !important;
+  outline-offset: 6px !important;
+  border-radius: 12px !important;
+  transition: outline 0.2s ease;
+}
