@@ -161,24 +161,6 @@
   font-weight: 500;
 }
 
-#tm-chatgpt-outline-root .tm-outline-item::after {
-  content: "";
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 2px;
-  border-radius: 999px;
-  background: transparent;
-  transition: background 0.14s ease, width 0.14s ease;
-}
-
-#tm-chatgpt-outline-root .tm-outline-item.active::after {
-  width: 12px;
-  background: var(--outline-primary);
-}
-
 #tm-chatgpt-outline-root .tm-outline-item-title {
   display: block;
   width: 100%;
